@@ -1,0 +1,82 @@
+---
+title: "Toothgrowth"
+author: "IFEOLUWA"
+date: "3/15/2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+# Dataset:Toothgrowth
+## Statistical analysis
+### Regression
+```{r}
+data(ToothGrowth)
+head(ToothGrowth)
+attach(ToothGrowth)
+regression<-lm(len~dose)
+summary(regression)
+```
+#### Report
+##### Hypothesis
+- H_o: There is no significant difference between len and dose.
+- H_1: There is significant difference between len and dose.
+
+##### Decision Rule
+- p-value < 0.05, reject H_o, otherwise, fail to reject H_o.
+
+##### Conclusion
+- Since p-value(1.233e-14) < 0.05, we reject H_o. Therefore, there is  significant difference between len and supp.
+- The linear regression model for the analysis is; Y = 7.4225 + 9.7636  X
+
+### Correlation
+```{r}
+correlation <- cor.test(len,dose)
+correlation
+```
+#### Report
+- The analysis has a very strong positive correlation of 0.8026913.
+
+## Graphical visualisation
+```{r}
+library(ggplot2)
+ggplot(ToothGrowth,aes(x=len))+
+geom_bar()
+
+library(ggplot2)
+ggplot(data=ToothGrowth,aes(x=len))+
+geom_freqpoly(binwidth=10)
+
+ggplot(data=ToothGrowth,aes(x=len,y=dose))+
+geom_point()+
+theme_bw()
+
+
+ggplot(data=ToothGrowth,aes(x=len))+
+geom_histogram(binwidth=10)+
+theme_classic()+
+labs(title="ToothGrowth", subtitle="Len and Dose")
+
+
+hist(len,col="blue")
+plot(len)
+lines(dose)
+```
+
+## Exploratory Data Analysis
+### Mean
+```{r}
+mean(len)
+mean(dose)
+```
+### Variance
+```{r}
+var(len)
+var(dose)
+```
+### Standard deviation
+```{r}
+sd(len)
+sd(dose)
+```
+
+
